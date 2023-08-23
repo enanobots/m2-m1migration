@@ -1,0 +1,43 @@
+{
+    "name": "enanobots/m2-m1migration",
+    "description": "Magento 2 - Magento 1 migration",
+    "homepage": "https://github.com/enanobots/m2-m1migration",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "email": "nanobotsecommerce@gmail.com",
+            "name": "eCommerce Nanobots"
+        },
+        {
+            "name": "Jakub Winkler",
+            "email": "jwinkler@qsolutionsstudio.com"
+        },
+        {
+            "name": "Lukasz Owczarczuk",
+            "email": "sebastian@qsolutionsstudio.com"
+        },
+        {
+            "name": "Sebastian Strojwas",
+            "email": "sebastian@qsolutionsstudio.com"
+        },
+        {
+            "name": "Wojtek Wnuk",
+            "email": "wojtek@qsolutionsstudio.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "version": "1.0.0",
+    "require": {
+        "magento/framework": "103.0.*",
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "files": [
+            "src/registration.php"
+        ],
+        "psr-4": {
+            "Nanobots\\MigrationTool\\": "src/"
+        }
+    }
+}

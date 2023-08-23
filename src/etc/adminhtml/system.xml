@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * Copyright © Q-Solutions Studio: eCommerce Nanobots. All rights reserved.
+ *
+ * @category    Nanobots
+ * @package     Nanobots_MigrationTool
+ * @author      Jakub Winkler <jwinkler@qsolutionsstudio.com
+ * @author      Sebastian Strojwas <sebastian@qsolutionsstudio.com>
+ * @author      Wojtek Wnuk <wojtek@qsolutionsstudio.com>
+ * @author      Lukasz Owczarczuk <lukasz@qsolutionsstudio.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="migration" translate="label" sortOrder="5000">
+            <label>Magento 1 Import Tools</label>
+        </tab>
+        <section id="migration" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Magento 1 Database config</label>
+            <tab>migration</tab>
+            <resource>Magento_MigrationTool::config</resource>
+            <group id="database" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Global settings</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1">
+                    <label>Is Import Enabled?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="host" translate="label comment" type="text" sortOrder="20" showInDefault="1">
+                    <label>Magento 1 MySQL host</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="database" translate="label comment" type="text" sortOrder="30" showInDefault="1">
+                    <label>Magento 1 MySQL database</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="user" translate="label comment" type="text" sortOrder="40" showInDefault="1">
+                    <label>Magento 1 MySQL user</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="password" translate="label comment" type="obscure" sortOrder="50" showInDefault="1">
+                    <label>Magento 1 MySQL password</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

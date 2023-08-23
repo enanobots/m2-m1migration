@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * Copyright © Q-Solutions Studio: eCommerce Nanobots. All rights reserved.
+ *
+ * @category    Nanobots
+ * @package     Nanobots_MigrationTool
+ * @author      Jakub Winkler <jwinkler@qsolutionsstudio.com
+ * @author      Sebastian Strojwas <sebastian@qsolutionsstudio.com>
+ * @author      Wojtek Wnuk <wojtek@qsolutionsstudio.com>
+ * @author      Lukasz Owczarczuk <lukasz@qsolutionsstudio.com>
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="eav_attribute_match" resource="default" engine="innodb" comment="EAV options match">
+        <column xsi:type="int" name="m1_attribute_option_id" nullable="false" padding="11" unsigned="true"/>
+        <column xsi:type="int" name="m2_attribute_option_id" nullable="false" padding="11" unsigned="true"/>
+    </table>
+    <table name="nanobots_migrations_status" resource="default" engine="innodb" comment="MigrationTool Status">
+        <column xsi:type="varchar" name="entity_name" nullable="false" length="255"/>
+        <column xsi:type="timestamp" name="updated_at" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_name"/>
+        </constraint>
+    </table>
+</schema>

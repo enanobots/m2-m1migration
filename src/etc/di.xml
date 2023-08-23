@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/**
+ * Copyright © Q-Solutions Studio: eCommerce Nanobots. All rights reserved.
+ *
+ * @category    Nanobots
+ * @package     Nanobots_MigrationTool
+ * @author      Jakub Winkler <jwinkler@qsolutionsstudio.com
+ * @author      Sebastian Strojwas <sebastian@qsolutionsstudio.com>
+ * @author      Wojtek Wnuk <wojtek@qsolutionsstudio.com>
+ * @author      Lukasz Owczarczuk <lukasz@qsolutionsstudio.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="nanobots_migration" xsi:type="object">Nanobots\MigrationTool\Console\Migration</item>
+                <item name="nanobots_migration_stores" xsi:type="object">Nanobots\MigrationTool\Console\MigrationStores</item>
+                <item name="nanobots_migration_tax" xsi:type="object">Nanobots\MigrationTool\Console\MigrationTax</item>
+                <item name="nanobots_migration_config" xsi:type="object">Nanobots\MigrationTool\Console\MigrationConfig</item>
+                <item name="nanobots_migration_cms" xsi:type="object">Nanobots\MigrationTool\Console\MigrationCms</item>
+                <item name="nanobots_migration_cms_blocks" xsi:type="object">Nanobots\MigrationTool\Console\MigrationCmsBlocks</item>
+                <item name="nanobots_migration_cms_pages" xsi:type="object">Nanobots\MigrationTool\Console\MigrationCmsPages</item>
+                <item name="nanobots_migration_catalog" xsi:type="object">Nanobots\MigrationTool\Console\MigrationCatalog</item>
+                <item name="nanobots_migration_stock" xsi:type="object">Nanobots\MigrationTool\Console\MigrationStock</item>
+                <item name="nanobots_migration_sales" xsi:type="object">Nanobots\MigrationTool\Console\MigrationSales</item>
+                <item name="nanobots_migration_sales_creditmemo" xsi:type="object">Nanobots\MigrationTool\Console\MigrationSalesCreditMemo</item>
+                <item name="nanobots_migration_sales_invoices" xsi:type="object">Nanobots\MigrationTool\Console\MigrationSalesInvoices</item>
+                <item name="nanobots_migration_sales_shipment" xsi:type="object">Nanobots\MigrationTool\Console\MigrationShipment</item>
+                <item name="nanobots_migration_salesrules" xsi:type="object">Nanobots\MigrationTool\Console\MigrationSalesRules</item>
+                <item name="nanobots_migration_customer" xsi:type="object">Nanobots\MigrationTool\Console\MigrationCustomer</item>
+                <item name="nanobots_price_fix" xsi:type="object">Nanobots\MigrationTool\Console\PriceFix</item>
+                <item name="nanobots_status_fix" xsi:type="object">Nanobots\MigrationTool\Console\StatusFix</item>
+                <item name="nanobots_scope_fix" xsi:type="object">Nanobots\MigrationTool\Console\ScopeFix</item>
+                <item name="nanobots_migration_gallery" xsi:type="object">Nanobots\MigrationTool\Console\MigrationGallery</item>
+                <item name="nanobots_migration_subscribers" xsi:type="object">Nanobots\MigrationTool\Console\MigrationSubscribers</item>
+                <item name="nanobots_migration_reviews" xsi:type="object">Nanobots\MigrationTool\Console\MigrationReviews</item>
+                <item name="nanobots_migration_email_templates" xsi:type="object">Nanobots\MigrationTool\Console\MigrationEmailTemplates</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
