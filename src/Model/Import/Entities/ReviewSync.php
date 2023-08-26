@@ -64,6 +64,7 @@ class ReviewSync extends SyncAbstract
      */
     public function syncData($m1Table, $m2Table, $cond = null, $onDuplicate = [])
     {
+        $m1Table = $this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . $m1Table;
         if ($m1Table === 'review_entity_summary') {
             $onDuplicate = ['reviews_count', 'rating_summary'];
         }

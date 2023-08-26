@@ -52,6 +52,12 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
+                <field id="prefix" translate="label comment" type="text" sortOrder="60" showInDefault="1">
+                    <label>Magento 1 MySQL Tables Prefix</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
             </group>
         </section>
     </system>

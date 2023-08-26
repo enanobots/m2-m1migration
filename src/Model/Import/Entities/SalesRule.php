@@ -105,7 +105,7 @@ class SalesRule extends TableImport
                     }
                     case 'attribute_id': {
                         $attributeCode = $this->connectionHelper->getM1connection()->fetchOne(
-                            'select `attribute_code` from `eav_attribute` where `attribute_id` = "' . $m1Entity['attribute_id'] .'"'
+                            'select `attribute_code` from `'. $this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute` where `attribute_id` = "' . $m1Entity['attribute_id'] .'"'
                         );
 
                         $m2AttributeId = $this->connectionHelper->getM2Connection()->fetchOne(

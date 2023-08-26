@@ -223,7 +223,7 @@ SQL;
 
         $sql = $this->connectionHelper->getM1connection()
             ->select()
-            ->from('eav_attribute', ['attribute_id'])
+            ->from($this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute', ['attribute_id'])
             ->where($cond);
 
         $this->mappableAttributes = $this->connectionHelper->getM1Connection()->fetchCol($sql);
@@ -246,7 +246,7 @@ SQL;
     {
         $sql = $this->connectionHelper->getM1connection()
             ->select()
-            ->from('eav_attribute', ['attribute_id'])
+            ->from($this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute', ['attribute_id'])
             ->where("frontend_input IN('select', 'multiselect')");
 
         $this->configurableAttributes = $this->connectionHelper->getM1Connection()->fetchCol($sql);
@@ -316,7 +316,7 @@ SQL;
         foreach ($this->getEntities() as $entityTypeId) {
             $this->m1Attributes[$entityTypeId] = $m1connection->fetchPairs(
                 $m1connection->select()
-                    ->from('eav_attribute', ['attribute_code', 'attribute_id'])
+                    ->from($this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute', ['attribute_code', 'attribute_id'])
                     ->where("entity_type_id = $entityTypeId")
             );
             $this->m2Attributes[$entityTypeId] = $m2connection->fetchPairs(
@@ -367,7 +367,7 @@ SQL;
 
         foreach ($this->getEntities() as $entityTypeId) {
             $m1AttributeTypes[$entityTypeId] = $m1connection->fetchPairs(
-                $m1connection->select()->from('eav_attribute', ['attribute_code', 'backend_type'])
+                $m1connection->select()->from($this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute', ['attribute_code', 'backend_type'])
                     ->where("entity_type_id = $entityTypeId")
             );
             $m2AttributeTypes[$entityTypeId] = $m2connection->fetchPairs(
@@ -391,7 +391,7 @@ SQL;
         $this->mismatchedAttributesMap = $mismatchedTypeAttributes;
         $mismatchedCond = trim(implode(' OR ', $idsCond));
         if ($mismatchedCond !== '') {
-            $this->mismatchedAttributeIds = $m1connection->fetchCol($m1connection->select()->from('eav_attribute', ['attribute_id'])
+            $this->mismatchedAttributeIds = $m1connection->fetchCol($m1connection->select()->from($this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute', ['attribute_id'])
                 ->where($mismatchedCond));
         }
     }

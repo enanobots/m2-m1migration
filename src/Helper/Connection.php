@@ -44,6 +44,10 @@ class Connection extends MagentoAbstractHelper
     /** @var string  */
     public const XPATH_CONFIG_IMPORT_ENABLED = 'migration/database/enabled';
 
+
+    /** @var string  */
+    public const XPATH_CONFIG_IMPORT_PREFIX = 'migration/database/prefix';
+
     /** @var int  */
     public const ENTITY_CUSTOMER = 1;
 
