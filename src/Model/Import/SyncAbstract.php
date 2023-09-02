@@ -70,7 +70,7 @@ abstract class SyncAbstract extends TableImportAbstract
         if ($this->matchMissingColumns && count($this->missingColumns) && !is_null($this->getEntityTypeId())) {
             $m1connection = $this->connectionHelper->getM1connection();
             $attributesSql = $m1connection->select()->from(
-                $this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute',
+                $this->connectionHelper->getM1TableName('eav_attribute'),
                 ['attribute_code', 'attribute_id', 'backend_type']
             )->where('entity_type_id = ? AND attribute_code IN(' . implode(',', array_map(function ($column) {
                     return "'$column'";

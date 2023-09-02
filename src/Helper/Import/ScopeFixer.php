@@ -29,7 +29,7 @@ class ScopeFixer extends Connection
         if ($this->initializeMagento1Connection()) {
             $m1Attributes = $this->getM1connection()->fetchPairs($this->getM1connection()
                 ->select()
-                ->from($this->getConfig(self::XPATH_CONFIG_IMPORT_PREFIX) . 'eav_attribute', ['attribute_code', 'attribute_id'])
+                ->from($this->getM1TableName('eav_attribute'), ['attribute_code', 'attribute_id'])
                 ->where("entity_type_id IN(3,4)"));
 
             $m2Attributes = $this->getM2Connection()->fetchPairs($this->getM2Connection()
@@ -40,7 +40,7 @@ class ScopeFixer extends Connection
             $m1Scopes = $this->getM1connection()->fetchPairs(
                 $this->getM1connection()
                 ->select()
-                ->from($this->getConfig(self::XPATH_CONFIG_IMPORT_PREFIX) . 'catalog_eav_attribute', ['attribute_id', 'is_global'])
+                ->from($this->getM1TableName('catalog_eav_attribute'), ['attribute_id', 'is_global'])
             );
 
             $attributesMap = [];

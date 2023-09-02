@@ -172,4 +172,15 @@ class Connection extends MagentoAbstractHelper
     {
         return $this->connection;
     }
+
+    /**
+     * @return string
+     */
+    public function getM1TableName($tableName)
+    {
+        return sprintf('%s%s',
+            $this->getConfig(self::XPATH_CONFIG_IMPORT_PREFIX),
+            $tableName
+        );
+    }
 }

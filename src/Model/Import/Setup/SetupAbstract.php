@@ -78,14 +78,6 @@ abstract class SetupAbstract
     }
 
     /**
-     * @return string
-     */
-    public function getM1FullTableName()
-    {
-        return $this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . $this->getM2TableName();
-    }
-
-    /**
      * @throws LocalizedException
      * @throws Zend_Db_Statement_Exception
      */
@@ -98,7 +90,7 @@ abstract class SetupAbstract
 
         $m1Entries = $this->getM1Connection()->fetchAll(
             'select ' . implode(',', $this->getM2TableColumns()) . '
-            from `' . $this->getM1FullTableName() . '`
+            from `' . $this->connectionHelper->getM1TableName($this->getM2TableName()) . '`
                 where `' . $this->getIncrementFields() . '` > 0
                 and `' . $this->getIncrementFields() . '`'
         );

@@ -76,7 +76,7 @@ class Config extends TableImportAbstract
     {
         $this->output->writeln('<info>Syncing config data</info>');
 
-        $m1Table = $this->connectionHelper->getConfig($this->connectionHelper::XPATH_CONFIG_IMPORT_PREFIX) . $m1Table;
+        $m1Table = $this->connectionHelper->getM1TableName($m1Table);
 
         $m1TableRows = $this->connectionHelper->getM1connection()->fetchAll(
             'select * from `' . $m1Table . '` ' . ($cond ? 'where ' . $cond : '')
