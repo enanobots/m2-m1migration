@@ -90,7 +90,7 @@ abstract class SetupAbstract
 
         $m1Entries = $this->getM1Connection()->fetchAll(
             'select ' . implode(',', $this->getM2TableColumns()) . '
-            from `' . $this->getM1TableName() . '`
+            from `' . $this->connectionHelper->getM1TableName($this->getM2TableName()) . '`
                 where `' . $this->getIncrementFields() . '` > 0
                 and `' . $this->getIncrementFields() . '`'
         );

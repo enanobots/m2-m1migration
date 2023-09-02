@@ -44,6 +44,10 @@ class Connection extends MagentoAbstractHelper
     /** @var string  */
     public const XPATH_CONFIG_IMPORT_ENABLED = 'migration/database/enabled';
 
+
+    /** @var string  */
+    public const XPATH_CONFIG_IMPORT_PREFIX = 'migration/database/prefix';
+
     /** @var int  */
     public const ENTITY_CUSTOMER = 1;
 
@@ -167,5 +171,16 @@ class Connection extends MagentoAbstractHelper
     public function getM2Connection()
     {
         return $this->connection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getM1TableName($tableName)
+    {
+        return sprintf('%s%s',
+            $this->getConfig(self::XPATH_CONFIG_IMPORT_PREFIX),
+            $tableName
+        );
     }
 }

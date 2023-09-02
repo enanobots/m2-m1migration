@@ -124,6 +124,8 @@ abstract class TableImportAbstract
             $this->connectionHelper->getM2Connection()->truncateTable($m2Table);
         }
 
+        $m1Table = $this->connectionHelper->getM1TableName($m1Table);
+
         $m1TotalRows = $this->connectionHelper->getM1connection()->fetchOne('select count(*) as count from ' . $m1Table);
         $primaryKey = $this->getM1PrimaryKey($m1Table);
 

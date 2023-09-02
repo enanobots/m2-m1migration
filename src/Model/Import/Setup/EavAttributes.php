@@ -187,7 +187,7 @@ class EavAttributes
 
         foreach (self::EAV_ENTITY_TYPES as $m1EntityTypeId => $m2EntityTypeId) {
             $eavAttributes = $this->getM1Connection()->fetchAll(
-                'select * from `eav_attribute` where `entity_type_id` = (:entity_type_id)',
+                'select * from  `' . $this->connectionHelper->getM1TableName('eav_attribute') . '` where `entity_type_id` = (:entity_type_id)',
                 [
                     'entity_type_id' => $m1EntityTypeId
                 ]
@@ -277,7 +277,7 @@ class EavAttributes
     {
         $this->getM2Connection()->beginTransaction();
         $m1AttributeOptions = $this->getM1Connection()->fetchAll(
-            'select option_id, sort_order from `eav_attribute_option` where `attribute_id` = (:attribute_id) order by `sort_order`',
+            'select option_id, sort_order from `'. $this->connectionHelper->getM1TableName('eav_attribute_option') .'` where `attribute_id` = (:attribute_id) order by `sort_order`',
             [
                 'attribute_id' => $m1AttributeId
             ]
@@ -309,7 +309,7 @@ class EavAttributes
             );
 
             $attributeOptionsValue = $this->getM1Connection()->fetchAll(
-                'select `option_id`, `value`, `store_id` from `eav_attribute_option_value` where `option_id` = (:option_id) ',
+                'select `option_id`, `value`, `store_id` from  `'. $this->connectionHelper->getM1TableName('eav_attribute_option_value') .'` where `option_id` = (:option_id) ',
                 [
                     'option_id' => $m1AttributeOption['option_id']
                 ]
@@ -340,7 +340,7 @@ class EavAttributes
         $entityTypeEavTable = $this->getEntityEavAttributeTable($entityTypeId);
 
         $m1EntityTypeTableData = $this->getM1Connection()->fetchAll(
-            'select * from `' . $entityTypeEavTable . '`
+            'select * from `' . $this->connectionHelper->getM1TableName($entityTypeEavTable) . '`
                 where `attribute_id` = (:attribute_id)',
             [
                 'attribute_id' => $attributeData['attribute_id']
@@ -395,9 +395,11 @@ class EavAttributes
         $this->insertM2AttributeOptions($attributeData['attribute_id'], $m2EavAttributeId);
 
         foreach (self::ENTITY_RELATED_TABLES[$entityTypeId] as $additionalTable) {
+            $additionalTable = $additionalTable;
+
             $m1AttributeSetCond = $entityTypeId !== 4 ? '`attribute_set_id` < 10' : '`attribute_set_id` = 4';
             $extraTableData = $this->getM1Connection()->fetchAll(
-                'select * from `' . $additionalTable . '`
+                'select * from `' . $this->connectionHelper->getM1TableName($additionalTable) . '`
                     where `attribute_id` = (:attribute_id)
                         and
                           ' . $m1AttributeSetCond, // this needs to be changes to configurable values
@@ -463,7 +465,7 @@ class EavAttributes
     {
         $this->getM2Connection()->beginTransaction();
         $m1AttributeLabels = $this->getM1Connection()->fetchAll(
-            'select `store_id`, `value` from `eav_attribute_label` where `attribute_id` = (:attribute_id)',
+            'select `store_id`, `value` from `'. $this->connectionHelper->getM1TableName('eav_attribute_label') . '` where `attribute_id` = (:attribute_id)',
             [
                 'attribute_id' => $m1AttributeId
             ]
